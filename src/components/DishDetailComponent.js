@@ -50,37 +50,6 @@ function RenderComments({comments, addComment, dishId}) {
 
 
 
-const DishDetail = (props) => {
-		if(props.dish === null || props.dish === undefined) return (<div></div>)
-
-		return (
-			<div className ='container' >
-				<div className = 'row'>
-					<Breadcrumb>
-						<BreadcrumbItem>
-							<Link to='/home'>Home</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link to='/menu'>Menu</Link>
-						</BreadcrumbItem>						
-						<BreadcrumbItem active>
-							{props.dish.name}
-						</BreadcrumbItem>
-					</Breadcrumb>
-			    </div>
-			    <div className = 'container'>
-			    	<div className = 'row'>
-						<RenderDish dish = {props.dish} />
-						<RenderComments 
-							comments = {props.comments}
-							addComment = {props.addComment}
-							dishId = {props.dish.id}
-						/>			    	
-			    	</div>
-				</div>
-			</div>
-		)
-	}
 
 
 const minLength = (min) => (val) => val && val.length >= min 
@@ -178,6 +147,38 @@ class CommentForm extends Component {
 			</div>
 		)
 	}
+}
+
+const DishDetail = (props) => {
+	if(props.dish === null || props.dish === undefined) return (<div></div>)
+
+	return (
+		<div className ='container' >
+			<div className = 'row'>
+				<Breadcrumb>
+					<BreadcrumbItem>
+						<Link to='/home'>Home</Link>
+					</BreadcrumbItem>
+					<BreadcrumbItem>
+						<Link to='/menu'>Menu</Link>
+					</BreadcrumbItem>						
+					<BreadcrumbItem active>
+						{props.dish.name}
+					</BreadcrumbItem>
+				</Breadcrumb>
+			</div>
+			<div className = 'container'>
+				<div className = 'row'>
+					<RenderDish dish = {props.dish} />
+					<RenderComments 
+						comments = {props.comments}
+						addComment = {props.addComment}
+						dishId = {props.dish.id}
+					/>			    	
+				</div>
+			</div>
+		</div>
+	)
 }
 
 
