@@ -181,4 +181,4 @@ class CommentForm extends Component {
 }
 
 
-export default DishDetail 
+export default DishDetail;
