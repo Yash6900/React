@@ -1,36 +1,36 @@
 import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import {baseUrl} from '../shared/baseUrl'
+import {Fade,Stagger } from 'react-animation-components'
+
+
+const RenderLeader=(props)=>
+{
+    return(
+    <Media tag="li">
+        <Media left middle>
+        <Media object src={baseUrl+ props.leader.image} alt={props.leader.name} />
+        </Media>
+
+        <Media body className="ml-5">
+            <Media heading>{props.leader.name}</Media>
+            <p>{props.leader.designation}</p>
+            <p>{props.leader.description}</p>
+        </Media>
+    </Media>
+    );
+}
 
 function About(props) {
 
-    const RenderLeader = (props) => {
-        const leader = props.leader
-        return (
-            <Media className = 'col-12 mb-4 mt-0'>
-                <Media left className ="mr-5 img-thumbnail col-1">
-                    <img src = {leader.image}/>
-                </Media>
-                <Media body className="col-12 mb-4" > 
-                    <Media heading>{leader.name}</Media>
-                    <p>{leader.designation}
-                    </p>
-                    <p>
-                        {leader.description}
-                    </p>
-                </Media>
-            </Media>
-        )
-    }
-
     const leaders = props.leaders.map((leader) => {
         return (
-            <RenderLeader leader = {leader} key = {leader.id}/>
+           <Fade in> <RenderLeader leader={leader}/><br /></Fade>
         );
     });
 
     return(
-
         <div className="container">
             <div className="row">
                 <Breadcrumb>
@@ -71,7 +71,6 @@ function About(props) {
                             <blockquote className="blockquote">
                                 <p className="mb-0">You better cut the pizza in four pieces because
                                     I'm not hungry enough to eat six.</p>
-                                    <br></br>
                                 <footer className="blockquote-footer">Yogi Berra,
                                 <cite title="Source Title">The Wit and Wisdom of Yogi Berra,
                                     P. Pepe, Diversion Books, 2014</cite>
@@ -86,8 +85,10 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    <Media list className = 'pl-0 mt-2'>
+                    <Media list>
+                    <Stagger in>
                         {leaders}
+                    </Stagger>
                     </Media>
                 </div>
             </div>
@@ -95,4 +96,6 @@ function About(props) {
     );
 }
 
-export default About; 
+
+
+export default About;    
